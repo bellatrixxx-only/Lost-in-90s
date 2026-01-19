@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags: []
   layers:
   - Default
@@ -41,3 +41,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG_Sky
+    uniqueID: 3960559865
+    locked: 0
+  - name: BG_Far
+    uniqueID: 1966683813
+    locked: 0
+  - name: BG_Mid
+    uniqueID: 932137927
+    locked: 0
+  - name: BG_Near
+    uniqueID: 2913972459
+    locked: 0
+  - name: World
+    uniqueID: 306117691
+    locked: 0
+  - name: FG_1
+    uniqueID: 525923033
+    locked: 0
+  - name: FG_2
+    uniqueID: 2498774407
+    locked: 0
+  - name: UI
+    uniqueID: 2885239785
+    locked: 0
+  m_RenderingLayers:
+  - Default
