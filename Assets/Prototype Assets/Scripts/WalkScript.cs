@@ -1,4 +1,4 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class WalkScript : MonoBehaviour
@@ -9,6 +9,7 @@ public class WalkScript : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+    private bool movementBlocked;  
     private float moveInput;
 
     private void Awake()
@@ -18,27 +19,37 @@ public class WalkScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+ 
+    public void SetBlocked(bool blocked)
+    {
+        movementBlocked = blocked;
+
+        if (blocked)
+        {
+            rb.linearVelocity = Vector2.zero;
+            if (animator != null)
+                animator.SetFloat("Speed", 0f);
+        }
+    }
+
     private void Update()
     {
+        if (movementBlocked) return;   
+
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        // Передаём скорость в Animator
         if (animator != null)
             animator.SetFloat("Speed", Mathf.Abs(moveInput));
 
-        // Поворот персонажа
         if (moveInput > 0)
-        {
-            spriteRenderer.flipX = false; //  вправо
-        }
+            spriteRenderer.flipX = false;
         else if (moveInput < 0)
-        {
-            spriteRenderer.flipX = true;  //  влево
-        }
+            spriteRenderer.flipX = true;
     }
 
     private void FixedUpdate()
     {
+        if (movementBlocked) return;
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 }
